@@ -104,17 +104,37 @@ class MCPClient:
         """
         session = await self._ensure_server_running_and_get_session(server_name)
         logger.info(f"MCPC: Calling tool '{tool_name}' on server '{server_name}'...")
-        response = await session.call_tool(tool_name, tool_args)
+        try:
+            response = await session.call_tool(tool_name, tool_args)
 
-        if response.isError:
-            error_text = (
-                response.content[0].text if response.content and hasattr(response.content[0], "text") else "Unknown server error"
-            )
-            logger.error(f"MCPC: Error calling tool '{tool_name}': {error_text}")
-            # Return error information within the standard structure
+            if response.isError:
+                error_text = (
+                    response.content[0].text if response.content and hasattr(response.content[0], "text") else "Unknown server error"
+                )
+                logger.error(f"MCPC: Server-side error calling tool '{tool_name}': {error_text}")
+                # Return error information within the standard structure
+                return {
+                    "metadata": getattr(response, "metadata", {}),
+                    "content_items": [{"type": "error", "text": error_text}]
+                }
+
+        except ConnectionError as e:
+            logger.error(f"MCPC: Network ConnectionError calling tool '{tool_name}' on server '{server_name}': {e}")
             return {
-                "metadata": getattr(response, "metadata", {}),
-                "content_items": [{"type": "error", "text": error_text}]
+                "metadata": {},
+                "content_items": [{"type": "error", "text": f"Network error calling tool '{tool_name}': {e}"}]
+            }
+        except TimeoutError as e: # asyncio.TimeoutError is a subclass of TimeoutError
+            logger.error(f"MCPC: TimeoutError calling tool '{tool_name}' on server '{server_name}': {e}")
+            return {
+                "metadata": {},
+                "content_items": [{"type": "error", "text": f"Timeout calling tool '{tool_name}': {e}"}]
+            }
+        except Exception as e: # Catch any other unexpected errors during the tool call
+            logger.exception(f"MCPC: Unexpected error calling tool '{tool_name}' on server '{server_name}': {e}")
+            return {
+                "metadata": {},
+                "content_items": [{"type": "error", "text": f"Unexpected error calling tool '{tool_name}': {e}"}]
             }
 
         content_items = []
