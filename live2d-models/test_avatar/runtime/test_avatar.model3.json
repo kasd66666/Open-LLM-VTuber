@@ -1,0 +1,69 @@
+{
+    "Version": 3,
+    "FileReferences": {
+        "Moc": "test_avatar.moc3",
+        "Textures": [
+            "textures/texture_00.png"
+        ],
+        "Physics": "test_avatar.physics3.json",
+        "Pose": "test_avatar.pose3.json",
+        "DisplayInfo": "test_avatar.cdi3.json",
+        "Expressions": [
+            {
+                "Name": "happy",
+                "File": "expressions/happy.exp3.json"
+            },
+            {
+                "Name": "sad",
+                "File": "expressions/sad.exp3.json"
+            },
+            {
+                "Name": "angry",
+                "File": "expressions/angry.exp3.json"
+            },
+            {
+                "Name": "surprised",
+                "File": "expressions/surprised.exp3.json"
+            }
+        ],
+        "Motions": {
+            "Idle": [
+                {
+                    "File": "motions/idle.motion3.json"
+                }
+            ],
+            "Tap": [
+                {
+                    "File": "motions/tap.motion3.json"
+                }
+            ]
+        }
+    },
+    "Groups": [
+        {
+            "Target": "Parameter",
+            "Name": "EyeBlink",
+            "Ids": [
+                "PARAM_EYE_L_OPEN",
+                "PARAM_EYE_R_OPEN"
+            ]
+        },
+        {
+            "Target": "Parameter",
+            "Name": "LipSync",
+            "Ids": [
+                "PARAM_MOUTH_OPEN_Y"
+            ]
+        }
+    ],
+    "HitAreas": [
+        {
+            "Name": "HitAreaHead",
+            "Id": "HitAreaHead"
+        },
+        {
+            "Name": "HitAreaBody", 
+            "Id": "HitAreaBody"
+        }
+    ]
+}

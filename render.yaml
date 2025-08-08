@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: vtuber-deepseek-v3
+    env: docker
+    repo: https://github.com/kasd66666/Open-LLM-VTuber.git
+    branch: main
+    dockerfilePath: ./dockerfile
+    dockerContext: .
+    plan: free
+    region: oregon
+    buildCommand: ""
+    startCommand: python run_server.py --config conf.production.yaml --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 12393
+      - key: HOST
+        value: 0.0.0.0
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: HF_HOME
+        value: /tmp/models
+      - key: MODELSCOPE_CACHE
+        value: /tmp/models
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
