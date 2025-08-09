@@ -1,0 +1,1 @@
+修改了英文配置模板里面的问题，增加了新的2个参数(first和seg_method)，bilibili的文件import改回去了

@@ -1,0 +1,6 @@
+tree 05702c00327246188b79a14c669767d05bb1cd7b
+parent 7e5d9f9d5a1ff3fd44361f9e28d2400b3b9e781e
+author rayburstray <3597468903@qq.com> 1744158179 +0800
+committer rayburstray <3597468903@qq.com> 1744158179 +0800
+
+修改了英文配置模板里面的问题，增加了新的2个参数(first和seg_method)，bilibili的文件import改回去了

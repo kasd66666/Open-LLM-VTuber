@@ -1,0 +1,73 @@
+# File da ignorare durante il build Docker
+
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Logs locali
+logs/
+*.log
+
+# Cache locale
+cache/
+.cache/
+
+# Modelli locali (verranno scaricati su Render)
+models/
+*.onnx
+*.bin
+*.safetensors
+
+# File di configurazione locale
+conf.yaml.backup
+.env
+.env.local
+
+# Chat history locale
+chat_history/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Documentation
+README.md
+DEPLOY.md
+*.md
+
+# Requirements originale (usiamo quello Linux)
+requirements.txt
+
+# File di deploy
+render-env-vars.txt
+deploy-render.sh

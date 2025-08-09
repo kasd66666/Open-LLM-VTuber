@@ -1,0 +1,59 @@
+# File da ignorare durante il deploy su Render
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
+
+# Logs locali
+logs/
+*.log
+
+# Cache locale
+cache/
+.cache/
+
+# Modelli locali (verranno scaricati su Render)
+models/
+*.onnx
+*.bin
+*.safetensors
+
+# File di configurazione locale
+conf.yaml.backup
+.env
+.env.local
+
+# Chat history locale
+chat_history/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp

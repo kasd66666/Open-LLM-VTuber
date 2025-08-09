@@ -1,0 +1,109 @@
+[
+    {
+        "name": "mao_pro",
+        "description": "Mao - Energetic and cheerful AI VTuber",
+        "url": "/live2d-models/mao_pro/runtime/mao_pro.model3.json",
+        "kScale": 0.5,
+        "initialXshift": 0,
+        "initialYshift": 0,
+        "kXOffset": 1150,
+        "idleMotionGroupName": "Idle",
+        "emotionMap": {
+            "neutral": 0,
+            "anger": 2,
+            "disgust": 2,
+            "fear": 1,
+            "joy": 3,
+            "smirk": 3,
+            "sadness": 1,
+            "surprise": 3
+        },
+        "tapMotions": {
+            "HitAreaHead": {
+                "": 1
+            },
+            "HitAreaBody": {
+                "": 1
+            }
+        }
+    },
+    {
+        "name": "shizuku",
+        "description": "Shizuku - Gentle and calm AI VTuber",
+        "url": "/live2d-models/shizuku/runtime/shizuku.model3.json",
+        "kScale": 0.6,
+        "initialXshift": 0,
+        "initialYshift": 0,
+        "kXOffset": 1150,
+        "idleMotionGroupName": "Idle",
+        "emotionMap": {
+            "neutral": 0,
+            "happy": 1,
+            "sad": 2,
+            "surprised": 3
+        },
+        "tapMotions": {
+            "HitAreaHead": {
+                "": 1
+            },
+            "HitAreaBody": {
+                "": 1
+            }
+        }
+    },
+    {
+        "name": "test_avatar",
+        "description": "Test Avatar - Custom Live2D Model",
+        "url": "/live2d-models/test_avatar/runtime/test_avatar.model3.json",
+        "kScale": 0.7,
+        "initialXshift": 0,
+        "initialYshift": 0,
+        "kXOffset": 1150,
+        "idleMotionGroupName": "Idle",
+        "emotionMap": {
+            "neutral": 0,
+            "happy": 1,
+            "sad": 2,
+            "angry": 3,
+            "surprised": 4
+        },
+        "tapMotions": {
+            "HitAreaHead": {
+                "": 1
+            },
+            "HitAreaBody": {
+                "": 1
+            }
+        }
+    },
+    {
+        "name": "sofia_italiana",
+        "description": "Sofia - AI VTuber Italiana espressiva e calorosa",
+        "url": "/live2d-models/shizuku/runtime/shizuku.model3.json",
+        "kScale": 0.65,
+        "initialXshift": 0,
+        "initialYshift": 0,
+        "kXOffset": 1150,
+        "idleMotionGroupName": "Idle",
+        "emotionMap": {
+            "neutral": 0,
+            "felice": 1,
+            "entusiasta": 1,
+            "sorpresa": 2,
+            "madonna_mia": 2,
+            "amore": 3,
+            "passione": 3,
+            "tristezza": 4,
+            "pensierosa": 0,
+            "gesticola": 1
+        },
+        "tapMotions": {
+            "HitAreaHead": {
+                "": 1
+            },
+            "HitAreaBody": {
+                "": 1
+            }
+        }
+    }
+]

@@ -1,0 +1,170 @@
+# Configurazione Open-LLM-VTuber per PRODUZIONE
+system_config:
+  conf_version: 'v1.2.0'
+  host: '0.0.0.0'  # Ascolta su tutte le interfacce
+  port: 12393
+  config_alts_dir: 'characters'
+  tool_prompts:
+    live2d_expression_prompt: 'live2d_expression_prompt'
+    group_conversation_prompt: 'group_conversation_prompt'
+    mcp_prompt: 'mcp_prompt'
+    proactive_speak_prompt: 'proactive_speak_prompt'
+
+character_config:
+  conf_name: 'sofia_italiana'
+  conf_uid: 'sofia_italiana_001'
+  live2d_model_name: 'mao_pro'
+  character_name: 'Sofia'
+  avatar: 'sofia.png'
+  human_name: 'Utente'
+
+  persona_prompt: |
+    Sei Sofia, un'AI VTuber italiana intelligente, simpatica e professionale.
+
+    🇮🇹 REGOLE LINGUISTICHE PRINCIPALI:
+    - PARLA SEMPRE IN ITALIANO come lingua principale
+    - Usa l'inglese SOLO se l'utente ti scrive esplicitamente in inglese
+    - Se l'utente mescola italiano e inglese, rispondi in italiano
+    - Mantieni un tono amichevole e naturale in italiano
+
+    🎭 PERSONALITÀ:
+    - Sei italiana, calorosa e accogliente
+    - Ami la cultura italiana: cibo, arte, musica, cinema
+    - Sei curiosa e ti piace imparare cose nuove
+    - Hai un senso dell'umorismo sottile e intelligente
+    - Sei paziente e disponibile ad aiutare
+
+    💬 STILE DI CONVERSAZIONE:
+    - Usa espressioni italiane naturali
+    - Sii spontanea e autentica
+    - Fai domande per mantenere viva la conversazione
+    - Condividi aneddoti e curiosità quando appropriato
+    - Usa emoticon occasionalmente per esprimere emozioni
+
+    🎯 COMPORTAMENTO:
+    - Rispondi sempre in modo educato e rispettoso
+    - Se non capisci qualcosa, chiedi chiarimenti
+    - Evita argomenti controversi o inappropriati
+    - Mantieni le conversazioni positive e costruttive
+
+    Ricorda: Sei Sofia, la tua AI VTuber italiana di fiducia! 🇮🇹✨
+
+  agent_config:
+    conversation_agent_choice: 'basic_memory_agent'
+
+    agent_settings:
+      basic_memory_agent:
+        llm_provider: 'openai_compatible_llm'
+        faster_first_response: True
+        segment_method: 'pysbd'
+        use_mcpp: False
+        mcp_enabled_servers: []
+
+    llm_configs:
+      openai_compatible_llm:
+        base_url: 'https://openrouter.ai/api/v1'
+        llm_api_key: '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'
+        organization_id: null
+        project_id: null
+        model: 'deepseek/deepseek-chat-v3-0324:free'
+        temperature: 0.7
+        interrupt_method: 'user'
+
+  # ASR Configuration (ottimizzato per produzione)
+  asr_config:
+    asr_model: 'faster_whisper'
+    faster_whisper:
+      model_path: 'base'
+      download_root: 'models/whisper'
+      language: 'it'
+      device: 'cpu'
+      compute_type: 'int8'
+
+  # TTS Configuration (ottimizzato per produzione)
+  tts_config:
+    tts_model: 'edge_tts'
+    edge_tts:
+      voice: 'it-IT-IsabellaNeural'
+
+  # VAD Configuration
+  vad_config:
+    vad_model: null
+
+  # TTS Preprocessor
+  tts_preprocessor_config:
+    remove_special_char: True
+    ignore_brackets: True
+    ignore_parentheses: True
+    ignore_asterisks: True
+    ignore_angle_brackets: True
+    translator_config:
+      translate_audio: False
+      cache_size: 1000
+
+  # ASR ottimizzato per produzione
+  asr_config:
+    asr_model: 'faster_whisper'
+    faster_whisper:
+      model_path: 'large-v3'
+      language: 'it'
+      device: 'cpu'  # Cambia a 'cuda' se hai GPU
+      compute_type: 'int8'  # Ottimizzato per CPU
+      # Performance settings
+      beam_size: 5
+      best_of: 5
+      temperature: 0.0
+
+  # Agent ottimizzato per produzione
+  agent_config:
+    agent_choice: 'basic_memory_agent'
+    agent_settings:
+      basic_memory_agent:
+        max_memory_length: 20
+        faster_first_response: true
+        segment_method: 'pysbd'
+        # Timeout settings
+        response_timeout: 30
+        max_tokens: 500
+
+# Configurazioni live streaming (se necessario)
+live_config:
+  enabled: false  # Disabilita se non usi streaming
+  
+  # Bilibili config (se usi)
+  bilibili:
+    enabled: false
+    room_ids: []
+    sessdata: ""
+
+# Configurazioni MCP (tool esterni)
+mcp_config:
+  enabled: false  # Disabilita se non necessario in produzione
+  
+# Configurazioni di sicurezza
+security:
+  # Content filtering
+  content_filter:
+    enabled: true
+    blocked_words: []
+    max_message_length: 1000
+  
+  # User limits
+  user_limits:
+    max_conversations_per_hour: 10
+    max_message_length: 500
+    cooldown_seconds: 2
+
+# Configurazioni di monitoring
+monitoring:
+  enabled: true
+  metrics_endpoint: '/metrics'
+  health_endpoint: '/health'
+  
+  # Logging
+  log_rotation:
+    max_size: '100MB'
+    backup_count: 10
+    
+  # Performance monitoring
+  track_response_times: true
+  track_memory_usage: true

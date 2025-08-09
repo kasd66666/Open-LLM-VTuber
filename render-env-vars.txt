@@ -1,0 +1,40 @@
+VARIABILI D'AMBIENTE PER RENDER
+================================
+
+Copia e incolla queste variabili nella sezione "Environment Variables" di Render:
+
+PORT=12393
+HOST=0.0.0.0
+PYTHONUNBUFFERED=1
+HF_HOME=/tmp/models
+MODELSCOPE_CACHE=/tmp/models
+ENVIRONMENT=production
+LOG_LEVEL=INFO
+
+ISTRUZIONI:
+1. Vai su Render Dashboard
+2. Seleziona il tuo servizio open-llm-vtuber
+3. Vai su "Environment" nel menu laterale
+4. Clicca "Add Environment Variable"
+5. Aggiungi una per una le variabili sopra:
+   - Key: PORT, Value: 12393
+   - Key: HOST, Value: 0.0.0.0
+   - Key: PYTHONUNBUFFERED, Value: 1
+   - Key: HF_HOME, Value: /tmp/models
+   - Key: MODELSCOPE_CACHE, Value: /tmp/models
+   - Key: ENVIRONMENT, Value: production
+   - Key: LOG_LEVEL, Value: INFO
+6. Clicca "Save Changes"
+7. Il servizio si riavvierà automaticamente
+
+START COMMAND per Render:
+python run_server.py --config conf.production.yaml --host 0.0.0.0 --port $PORT
+
+DOCKERFILE PATH:
+./dockerfile.render
+
+PIANO:
+Free (0$/mese)
+
+MODELLO AI:
+deepseek/deepseek-chat-v3-0324:free (gratuito)
